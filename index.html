@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="lo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Xiva ຊີວາ</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Xiva ຊີວາ · student, video editor, night owl who thinks about black holes at 2am">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+Lao:wght@400..700&family=Noto+Serif+Lao:wght@400..600&family=Pinyon+Script&display=swap">
+<style>
+/* Layout: one phone-width column floating in a quiet starfield. The jellyfish photo is the one loud moment;
+   everything after it is soft cards and lists, like scrolling someone's notes at 2am.
+   Single dark theme by choice: it is a night sky. */
+:root{
+  --night:#04060D;
+  --deep:#0A0F22;
+  --card:#0C1229;
+  --card-hi:#121B3D;
+  --line:#1D2649;
+  --fg:#EEF1FB;
+  --muted:#8F99BC;
+  --glow:#5B6CFF;
+  --glow-soft:rgba(91,108,255,.16);
+  --ice:#BEC8FF;
+  --warm:#F2D7A2;
+  --shade:rgba(4,6,13,.6);
+  --font-display:"Instrument Serif","Noto Serif Lao",Georgia,serif;
+  --font-body:"DM Sans","Noto Sans Lao",system-ui,-apple-system,sans-serif;
+  --font-mono:"DM Mono","Noto Sans Lao",ui-monospace,Menlo,monospace;
+  --font-script:"Pinyon Script","Noto Serif Lao",cursive;
+  --paper:#F3F1EC;
+  --paper-ink:#4A5170;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--night)}
+body{background:var(--night);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+:root:not([data-lang="en"]) body{line-height:1.75}
+a{color:inherit}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:8px}
+
+.en{display:none}
+:root[data-lang="en"] .lo{display:none}
+:root[data-lang="en"] .en{display:inline}
+
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.aura{position:fixed;left:0;right:0;top:0;height:70vh;z-index:0;pointer-events:none;background:radial-gradient(70% 60% at 50% 0%,var(--glow-soft),transparent 70%)}
+.page{position:relative;z-index:1;max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 56px;display:flex;flex-direction:column;gap:56px}
+
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.handle{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+.lang{display:inline-flex;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--deep)}
+.lang button{appearance:none;border:0;min-height:32px;padding:4px 13px;border-radius:999px;background:transparent;color:var(--muted);font-family:var(--font-mono);font-size:12px;cursor:pointer;transition:background-color .2s,color .2s}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--night)}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:22px;margin-top:-32px}
+.photo{position:relative;margin:0;aspect-ratio:3/4;max-width:100%;overflow:hidden;border-radius:28px;background:var(--deep);box-shadow:0 34px 90px -34px rgba(70,90,255,.6)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,6,13,.4) 0%,transparent 32%,transparent 72%,rgba(4,6,13,.5) 100%)}
+.name{position:absolute;z-index:1;top:22px;left:22px;right:22px;margin:0;display:flex;flex-direction:column;align-items:flex-start;font-weight:400;line-height:.9}
+.name .lat{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:clamp(76px,23vw,124px);letter-spacing:-.02em;text-shadow:0 6px 34px rgba(20,30,170,.65)}
+.name .lao{margin-top:8px;font-family:"Noto Serif Lao",Georgia,serif;font-size:clamp(22px,6vw,30px);font-weight:500;line-height:1.5;color:var(--ice)}
+.name .sig{margin-top:2px;font-family:var(--font-script);font-size:clamp(22px,6vw,28px);line-height:1.2;color:var(--warm);opacity:.9}
+.np{position:absolute;z-index:1;right:14px;bottom:14px;display:inline-flex;align-items:center;gap:10px;max-width:calc(100% - 28px);padding:8px 14px 8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:var(--shade);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:12.5px;line-height:1.3;text-decoration:none}
+.np .meta{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np b{font-weight:600}
+.np .by{color:var(--muted)}
+.eq{flex:none;display:inline-flex;align-items:flex-end;gap:2px;width:13px;height:13px}
+.eq i{flex:1;height:40%;border-radius:1px;background:var(--ice);animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.45s}
+.eq i:nth-child(3){animation-delay:-.75s}
+@keyframes eq{0%,100%{height:30%}50%{height:100%}}
+
+.intro{display:flex;flex-direction:column;gap:12px}
+.hi{margin:0;font-family:var(--font-mono);font-size:13px;color:var(--ice)}
+.tagline{margin:0;font-family:var(--font-display);font-style:italic;font-synthesis:none;font-size:clamp(25px,6.6vw,31px);line-height:1.2;text-wrap:balance}
+:root:not([data-lang="en"]) .tagline{font-size:clamp(20px,5.4vw,25px);line-height:1.55}
+.chips{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;background:var(--deep);font-size:13px;color:var(--muted)}
+
+/* sections */
+.sec{display:flex;flex-direction:column;gap:16px}
+.sec h2{margin:0;font-family:var(--font-display);font-style:italic;font-synthesis:none;font-weight:400;font-size:clamp(32px,8.6vw,40px);line-height:1.1;text-wrap:balance}
+:root:not([data-lang="en"]) .sec h2{font-size:clamp(26px,7vw,32px);font-weight:500;line-height:1.4}
+.sub{margin:-8px 0 0;font-size:14px;color:var(--muted)}
+.about{margin:0;font-size:17px;line-height:1.65;max-width:60ch}
+.about-wrap{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:18px;align-items:start}
+.polaroid{margin:4px 4px 0 0;padding:8px 8px 10px;display:flex;flex-direction:column;gap:6px;border-radius:6px;background:var(--paper);transform:rotate(3deg);box-shadow:0 20px 40px -18px rgba(0,0,0,.85);transition:transform .3s}
+.polaroid:hover{transform:rotate(0deg) scale(1.03)}
+.polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;border-radius:2px}
+.polaroid figcaption{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;color:var(--night)}
+.polaroid .cap{font-family:var(--font-script);font-size:21px;line-height:1.1}
+:root:not([data-lang="en"]) .polaroid .cap{font-size:15px;font-weight:500;line-height:1.5}
+.polaroid small{font-family:var(--font-mono);font-size:9.5px;line-height:1.35;color:var(--paper-ink)}
+
+.now{margin:0;display:flex;flex-direction:column;padding:4px 18px;border:1px solid var(--line);border-radius:22px;background:var(--card)}
+.now div{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;padding-block:12px;border-bottom:1px dashed var(--line)}
+.now div:last-child{border-bottom:0}
+.now dt{padding-top:2px;font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+.now dd{margin:0;font-size:15.5px;line-height:1.5}
+
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;overflow:hidden;min-width:0;display:flex;flex-direction:column;gap:6px;padding:16px;border:1px solid var(--line);border-radius:22px;background:var(--card)}
+.tile.wide{grid-column:1/-1}
+.tile .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--ice)}
+.tile h3{margin:0;font-family:var(--font-display);font-style:italic;font-synthesis:none;font-weight:400;font-size:24px;line-height:1.15}
+:root:not([data-lang="en"]) .tile h3{font-size:19px;font-weight:500;line-height:1.45}
+.tile p{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.tile.space{padding-right:118px;min-height:150px;justify-content:center;background:radial-gradient(120% 140% at 100% 50%,var(--card-hi),var(--card) 60%)}
+.bh{position:absolute;right:18px;top:50%;width:86px;height:86px;margin-top:-43px}
+.bh::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 8%,var(--warm) 20%,transparent 36%,var(--ice) 58%,transparent 76%,var(--warm) 90%,transparent);filter:blur(6px);opacity:.85;animation:spin 8s linear infinite}
+.bh .disk{position:absolute;left:-22%;right:-22%;top:44%;height:12%;border-radius:50%;background:linear-gradient(90deg,transparent,var(--warm) 30%,var(--fg) 50%,var(--warm) 70%,transparent);filter:blur(1.5px);opacity:.75}
+.bh::after{content:"";position:absolute;inset:24%;border-radius:50%;background:var(--night);box-shadow:0 0 0 1.5px rgba(242,215,162,.6),0 0 26px 6px rgba(91,108,255,.35)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.tracks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line);border-radius:22px;background:var(--card)}
+.tracks a{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line);text-decoration:none;transition:background-color .2s}
+.tracks li:last-child a{border-bottom:0}
+.tracks a:hover{background:var(--card-hi)}
+.num{font-family:var(--font-mono);font-size:12px;color:var(--muted);text-align:center}
+.tracks .eq{width:14px;height:14px;justify-self:center}
+.tt{display:flex;flex-direction:column;min-width:0}
+.tt b{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tt span{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go{font-family:var(--font-mono);font-size:16px;color:var(--muted);transition:transform .2s,color .2s}
+.tracks a:hover .go{transform:translate(2px,-2px);color:var(--fg)}
+.genres{display:flex;flex-wrap:wrap;gap:8px}
+.genres span{padding:4px 11px;border-radius:999px;background:var(--glow-soft);color:var(--ice);font-family:var(--font-mono);font-size:12px}
+.artists{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.mini{margin:0;font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--ice)}
+.artist-list{display:flex;flex-wrap:wrap;gap:8px}
+.artist-list a{display:inline-flex;align-items:center;min-height:38px;padding:6px 15px;border-radius:999px;background:var(--glow-soft);font-size:14.5px;font-weight:500;line-height:1.3;text-decoration:none;transition:background-color .2s,transform .2s}
+.artist-list a:hover{background:rgba(91,108,255,.32)}
+.artist-list a:active{transform:scale(.97)}
+.binge{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.show{min-width:0;min-height:118px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--card-hi),var(--card) 75%)}
+.show b{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;font-size:21px;line-height:1.1}
+.show span{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.show.more{justify-content:center;align-items:center;text-align:center;border-style:dashed;background:transparent}
+.show.more b{font-family:var(--font-body);font-style:normal;font-size:15px;color:var(--muted)}
+
+.roll-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.hint{font-family:var(--font-mono);font-size:12px;color:var(--muted);white-space:nowrap}
+.roll{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;
+  margin-left:calc(-1 * max(16px,env(safe-area-inset-left,0px)));margin-right:calc(-1 * max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  scroll-padding-left:max(16px,env(safe-area-inset-left,0px))}
+.roll::-webkit-scrollbar{display:none}
+.roll figure{flex:0 0 64%;max-width:280px;margin:0;scroll-snap-align:start;display:flex;flex-direction:column;gap:8px}
+.roll img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;background:var(--deep)}
+.roll figcaption{font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+
+.starters{display:flex;flex-wrap:wrap;gap:8px}
+.starter{display:inline-flex;align-items:center;min-height:40px;padding:8px 15px;border:1px solid var(--line);border-radius:999px;background:var(--card);font-size:14px;line-height:1.35;text-decoration:none;transition:border-color .2s,background-color .2s,transform .2s}
+.starter:hover{border-color:var(--glow);background:var(--card-hi)}
+.starter:active{transform:scale(.97)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;font-size:15px;font-weight:600;line-height:1.2;text-decoration:none;transition:transform .2s,background-color .2s,border-color .2s}
+.btn:active{transform:scale(.97)}
+.btn-fill{background:var(--fg);color:var(--night)}
+.btn-fill:hover{background:var(--ice)}
+.btn-line{border:1px solid var(--line);color:var(--fg)}
+.btn-line:hover{border-color:var(--glow)}
+.btn svg{width:18px;height:18px}
+
+.links{display:flex;flex-direction:column;gap:10px}
+.lnk{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:14px;padding:11px 16px 11px 11px;border:1px solid var(--line);border-radius:20px;background:var(--card);text-decoration:none;transition:border-color .2s,background-color .2s}
+.lnk:hover{border-color:var(--glow);background:var(--card-hi)}
+.ico{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line);border-radius:13px;background:var(--deep);color:var(--ice)}
+.ico svg{width:21px;height:21px}
+.lnk .tt b{font-size:15.5px}
+.lnk:hover .go{transform:translate(2px,-2px);color:var(--fg)}
+
+.work{display:flex;flex-direction:column;gap:10px;padding:20px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(160deg,var(--card-hi),var(--card) 70%)}
+.work .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--ice)}
+.work h3{margin:0;font-family:var(--font-display);font-style:italic;font-synthesis:none;font-weight:400;font-size:28px;line-height:1.15}
+:root:not([data-lang="en"]) .work h3{font-size:22px;font-weight:500;line-height:1.45}
+.work p{margin:0;font-size:14.5px;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+
+.foot{display:flex;flex-direction:column;gap:4px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--font-mono);font-size:12px;color:var(--muted)}
+.foot .sig{font-family:var(--font-script);font-size:30px;line-height:1.2;color:var(--warm)}
+
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;max-width:calc(100% - 32px);padding:10px 16px;border-radius:999px;background:var(--fg);color:var(--night);font-size:14px;font-weight:500;text-align:center;opacity:0;transform:translate(-50%,8px);transition:opacity .2s,transform .2s}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:400px){
+  .now div{grid-template-columns:100px minmax(0,1fr)}
+  .about-wrap{grid-template-columns:minmax(0,1fr) 116px;gap:14px}
+  .about{font-size:16px}
+  .tile.space{padding-right:104px}
+  .bh{right:12px;width:78px;height:78px;margin-top:-39px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="aura" aria-hidden="true"></div>
+
+<main class="page">
+  <header class="top">
+    <span class="handle">@siiwa_ghf166</span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set="lo" aria-pressed="true">ລາວ</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <figure class="photo">
+      <img src="img/hero.jpg" width="1200" height="1600" alt="Xiva sitting in front of a glowing jellyfish tank" fetchpriority="high">
+      <h1 class="name"><span class="lat">Xiva</span><span class="lao">ຊີວາ</span><span class="sig">friday's child</span></h1>
+      <a class="np" href="https://open.spotify.com/search/Nobody%20Gets%20Me%20SZA" target="_blank" rel="noopener">
+        <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="meta"><b>Nobody Gets Me</b> <span class="by">· SZA</span></span>
+      </a>
+    </figure>
+    <div class="intro">
+      <p class="hi"><span class="en">heyy, it's xiva</span><span class="lo">Hi~ ຊີວາ ເດີ</span></p>
+      <p class="tagline"><span class="en">student by day, editor by night, overthinking black holes at 2am.</span><span class="lo">ກາງເວັນເປັນ student ກາງຄືນເປັນ editor ສອງໂມງກາງຄືນແລ້ວຍັງນັ່ງຄິດເລື່ອງ black hole ຢູ່ເລີຍ</span></p>
+      <ul class="chips">
+        <li>he/him</li>
+        <li>2 Dec · 05's</li>
+        <li>♐ Sagittarius</li>
+        <li>☾ night owl</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-about">
+    <h2 id="h-about"><span class="en">the short version</span><span class="lo">ຮູ້ຈັກເຮົາແບບສັ້ນໆ</span></h2>
+    <div class="about-wrap">
+      <p class="about"><span class="en">kinda quiet at first, but once we click i won't stop talking lol. i edit videos, make motion stuff, hit the gym, and fall down physics rabbit holes till i forget to sleep. not smart, just way too curious.</span><span class="lo">ທຳອິດອາດເບິ່ງງຽບໆ ຂີ້ອາຍໜ້ອຍໜຶ່ງ ແຕ່ຖ້າ vibe ກັນແລ້ວ ລົມມ່ວນບໍ່ຢຸດເລີຍ 555. edit ວິດີໂອ ເຮັດ motion ເຂົ້າ gym ແລ້ວກໍມັກຫຼົງໄປໃນໂລກ physics ຈົນລືມນອນ. ບໍ່ໄດ້ເກັ່ງຫຍັງເດີ້ ພຽງແຕ່ curious ຫຼາຍໄປໜ້ອຍໜຶ່ງ</span></p>
+      <figure class="polaroid">
+        <img src="img/lil.jpg" width="600" height="952" loading="lazy" alt="Xiva as a little kid, grinning in a pink shirt">
+        <figcaption><span class="cap"><span class="en">lil xiva</span><span class="lo">ຊີວາຕອນນ້ອຍ</span></span><small><span class="en">same smile, now with caffeine</span><span class="lo">ຍິ້ມຄືເກົ່າ ເພີ່ມເຕີມຄືຕິດ coffee</span></small></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-now">
+    <h2 id="h-now"><span class="en">lately</span><span class="lo">ຊ່ວງນີ້</span></h2>
+    <dl class="now">
+      <div><dt><span class="en">status</span><span class="lo">status</span></dt><dd><span class="en">communication arts student @ SIT</span><span class="lo">SIT ເດັກນິເທດສາດ</span></dd></div>
+      <div><dt><span class="en">work</span><span class="lo">work</span></dt><dd><span class="en">video editor &amp; motion designer</span><span class="lo">video editor &amp; motion designer</span></dd></div>
+      <div><dt><span class="en">obsessed with</span><span class="lo">ກຳລັງຕິດ</span></dt><dd><span class="en">black holes, time &amp; quantum</span><span class="lo">black hole, time, quantum</span></dd></div>
+      <div><dt><span class="en">AI</span><span class="lo">AI</span></dt><dd><span class="en">into superintelligence</span><span class="lo">ສົນໃຈ superintelligence</span></dd></div>
+      <div><dt><span class="en">fuel</span><span class="lo">fuel</span></dt><dd><span class="en">americano, non-negotiable ☕︎</span><span class="lo">americano ຂາດບໍ່ໄດ້ ☕︎</span></dd></div>
+      <div><dt><span class="en">peak hours</span><span class="lo">ເວລາທອງ</span></dt><dd><span class="en">2am, obviously ☾</span><span class="lo">ສອງໂມງກາງຄືນ ນັ້ນແຫຼະ ☾</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="sec" aria-labelledby="h-into">
+    <h2 id="h-into"><span class="en">stuff i'm into</span><span class="lo">ເລື່ອງທີ່ມັກ</span></h2>
+    <div class="bento">
+      <article class="tile wide space">
+        <span class="k">physics &amp; space</span>
+        <h3><span class="en">how does the universe even work?</span><span class="lo">ຈັກກະວານມັນເຮັດວຽກແນວໃດກັນແທ້?</span></h3>
+        <p><span class="en">black holes, time, quantum, and the physicists who figured it all out. not a science nerd, just can't stop wondering.</span><span class="lo">black hole, time, quantum ແລະ ບັນດານັກ physics ທີ່ຄິດເລື່ອງພວກນີ້ອອກ. ບໍ່ແມ່ນສາຍວິຊາການເດີ້ ມັກເພາະ curious ລ້ວນໆ.</span></p>
+        <div class="bh" aria-hidden="true"><span class="disk"></span></div>
+      </article>
+      <article class="tile">
+        <span class="k">music</span>
+        <h3>hip-hop &amp; r&amp;b</h3>
+        <p><span class="en">lo-fi when it's late and the vibes are soft.</span><span class="lo">ເດິກໆ ຂໍເປັນ lo-fi ຟັງ chill ໆ</span></p>
+      </article>
+      <article class="tile">
+        <span class="k">series</span>
+        <h3>series &gt; movies</h3>
+        <p><span class="en">fantasy, thrillers, action, and lowkey romance (don't tell anyone).</span><span class="lo">fantasy, thriller, action ແລ້ວກໍແອບເບິ່ງ romance ແດ່ (ຢ່າບອກໃຜເດີ້)</span></p>
+      </article>
+      <article class="tile">
+        <span class="k">gym</span>
+        <h3>gym era</h3>
+        <p><span class="en">go, hurt, repeat. also taking fitness clients, if you can keep up 😏</span><span class="lo">ໄປທຸກມື້ ເມື່ອຍທຸກມື້ ແຕ່ກໍຍັງໄປ 555. ຮັບ train fitness ນຳເດີ້ ຖ້າບໍ່ຂີ້ຄ້ານ 😏</span></p>
+      </article>
+      <article class="tile">
+        <span class="k">travel</span>
+        <h3><span class="en">anywhere, as long as we go</span><span class="lo">ໄປໃສກໍໄດ້ ຂໍໃຫ້ໄດ້ໄປ</span></h3>
+        <p><span class="en">new places, new pics.</span><span class="lo">ບ່ອນໃໝ່ ຮູບໃໝ່ ຊີວິດໃໝ່ (ເວົ້າຫຼິ້ນ)</span></p>
+      </article>
+      <article class="tile">
+        <span class="k">café</span>
+        <h3>café hopper</h3>
+        <p><span class="en">americano in hand, could sit there all day.</span><span class="lo">americano ຢູ່ໃນມື ນັ່ງໄດ້ທັງມື້</span></p>
+      </article>
+      <article class="tile">
+        <span class="k">AI &amp; tech</span>
+        <h3><span class="en">AI nerd-ish</span><span class="lo">ສາຍ AI</span></h3>
+        <p><span class="en">reads LLM news and works with AI agents.</span><span class="lo">ອ່ານຂ່າວ LLM ແລະ ໃຊ້ AI Agent ຊ່ວຍເຮັດວຽກ</span></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-music">
+    <h2 id="h-music">on repeat</h2>
+    <p class="sub"><span class="en">tap one, let's vibe on Spotify</span><span class="lo">ກົດເພງໄປຟັງໃນ Spotify ນຳກັນເລີຍ</span></p>
+    <ol class="tracks">
+      <li><a href="https://open.spotify.com/search/Nobody%20Gets%20Me%20SZA" target="_blank" rel="noopener"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="tt"><b>Nobody Gets Me</b><span>SZA</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/lowkey%20NIKI" target="_blank" rel="noopener"><span class="num">2</span><span class="tt"><b>lowkey</b><span>NIKI</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Secondhand%20Don%20Toliver" target="_blank" rel="noopener"><span class="num">3</span><span class="tt"><b>Secondhand (feat. Rema)</b><span>Don Toliver, Rema</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Snap%20Yo%20Fingers%20Lil%20Jon" target="_blank" rel="noopener"><span class="num">4</span><span class="tt"><b>Snap Yo Fingers</b><span>Lil Jon, E-40, Sean Paul</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Mad%20Ne-Yo" target="_blank" rel="noopener"><span class="num">5</span><span class="tt"><b>Mad</b><span>Ne-Yo</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Low%20Life%20Future" target="_blank" rel="noopener"><span class="num">6</span><span class="tt"><b>Low Life (feat. The Weeknd)</b><span>Future, The Weeknd</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Took%20Her%20To%20The%20O%20King%20Von" target="_blank" rel="noopener"><span class="num">7</span><span class="tt"><b>Took Her To The O</b><span>King Von</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+      <li><a href="https://open.spotify.com/search/Sure%20Thing%20Miguel" target="_blank" rel="noopener"><span class="num">8</span><span class="tt"><b>Sure Thing</b><span>Miguel</span></span><span class="go" aria-hidden="true">↗</span></a></li>
+    </ol>
+    <div class="artists">
+      <p class="mini">fav artists</p>
+      <div class="artist-list"><a href="https://open.spotify.com/search/SZA" target="_blank" rel="noopener">SZA</a><a href="https://open.spotify.com/search/Ne-Yo" target="_blank" rel="noopener">Ne-Yo</a><a href="https://open.spotify.com/search/Justin%20Bieber" target="_blank" rel="noopener">Justin Bieber</a><a href="https://open.spotify.com/search/Chris%20Brown" target="_blank" rel="noopener">Chris Brown</a><a href="https://open.spotify.com/search/50%20Cent" target="_blank" rel="noopener">50 Cent</a><a href="https://open.spotify.com/search/Rihanna" target="_blank" rel="noopener">Rihanna</a><a href="https://open.spotify.com/search/Don%20Toliver" target="_blank" rel="noopener">Don Toliver</a><a href="https://open.spotify.com/search/The%20Weeknd" target="_blank" rel="noopener">The Weeknd</a><a href="https://open.spotify.com/search/Drake" target="_blank" rel="noopener">Drake</a><a href="https://open.spotify.com/search/Kendrick%20Lamar" target="_blank" rel="noopener">Kendrick Lamar</a><a href="https://open.spotify.com/search/USHER" target="_blank" rel="noopener">USHER</a></div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-binge">
+    <h2 id="h-binge">binge list</h2>
+    <p class="sub"><span class="en">series i couldn't stop watching</span><span class="lo">series ທີ່ເບິ່ງແລ້ວຢຸດບໍ່ໄດ້</span></p>
+    <div class="binge">
+      <article class="show"><b>Game of Thrones</b><span>HBO · fantasy</span></article>
+      <article class="show"><b>House of the Dragon</b><span>HBO · fantasy</span></article>
+      <article class="show"><b>A Knight of the Seven Kingdoms</b><span>HBO · fantasy</span></article>
+      <article class="show"><b>Stranger Things</b><span>Netflix · sci-fi</span></article>
+      <article class="show"><b>Sweet Home</b><span>Netflix · K-drama</span></article>
+      <article class="show"><b>The Night Agent</b><span>Netflix · thriller</span></article>
+      <article class="show"><b>Reacher</b><span>Prime Video · action</span></article>
+      <article class="show more"><b><span class="en">+ way more</span><span class="lo">+ ອີກຫຼາຍເລື່ອງ</span></b></article>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-roll">
+    <div class="roll-head">
+      <h2 id="h-roll">camera roll</h2>
+      <span class="hint" aria-hidden="true">swipe →</span>
+    </div>
+    <div class="roll" tabindex="0" aria-label="Photos">
+      <figure><img src="img/beachnight.jpg" width="900" height="1200" loading="lazy" alt="On the beach at dusk, holding a camera, flash on"></figure>
+      <figure><img src="img/sea.jpg" width="900" height="1200" loading="lazy" alt="Black and white photo at the beach"></figure>
+      <figure><img src="img/coffee.jpg" width="900" height="1200" loading="lazy" alt="Holding a coffee on a wooden bench"></figure>
+      <figure><img src="img/mirror.jpg" width="900" height="1350" loading="lazy" alt="Mirror selfie with flash, cap and sunglasses"></figure>
+      <figure><img src="img/cave.jpg" width="900" height="1125" loading="lazy" alt="Inside a limestone cave"></figure>
+      <figure><img src="img/nightswim.jpg" width="900" height="1200" loading="lazy" alt="By a pool at night"></figure>
+      <figure><img src="img/museum.jpg" width="900" height="1125" loading="lazy" alt="Standing under a gold carved ceiling in an art museum"></figure>
+      <figure><img src="img/capblur.jpg" width="900" height="1350" loading="lazy" alt="Blurry close-up, cap pulled low, hand over face"></figure>
+      <figure><img src="img/nocap.jpg" width="900" height="1125" loading="lazy" alt="Sitting in a café, hand on chin"></figure>
+      <figure><img src="img/camera.jpg" width="828" height="552" loading="lazy" style="object-position:68% 50%" alt="Taking a photo with a camera in a garden"></figure>
+      <figure><img src="img/gym.jpg" width="900" height="1600" loading="lazy" alt="At the gym"></figure>
+      <figure><img src="img/view.jpg" width="900" height="1200" loading="lazy" alt="A colourful town street seen from above"></figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-hi">
+    <h2 id="h-hi"><span class="en">wanna know me? just DM</span><span class="lo">ຢາກຮູ້ຈັກ ກໍທັກມາໄດ້ເລີຍ</span></h2>
+    <p class="sub"><span class="en">i reply fast, not a snob. no clue what to say? tap one, it's copied for you.</span><span class="lo">ຕອບໄວເດີ້ ບໍ່ຫຍິ່ງ ບໍ່ຮູ້ຈະທັກຫຍັງ? ກົດເລືອກຂ້າງລຸ່ມ ເຮົາ copy ໃຫ້ແລ້ວ</span></p>
+    <div class="starters">
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">hii, can i get to know u?</span><span class="lo">Hi ຂໍຮູ້ຈັກແດ່ໄດ້ບໍ່</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">got a crush yet? 👀</span><span class="lo">ມີ crush ແລ້ວຍັງ? 👀</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">what's your type, be honest</span><span class="lo">type ເປັນແບບໃດ ບອກແດ່</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">it's 2am, u up?</span><span class="lo">ສອງໂມງກາງຄືນແລ້ວ ຍັງບໍ່ນອນອີກບໍ່?</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">americano date? my treat</span><span class="lo">ໄປກິນ americano ນຳກັນບໍ່ ເຮົາລ້ຽງ</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">can you train me? 💪</span><span class="lo">train ໃຫ້ແດ່ໄດ້ບໍ່? 💪</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">trade playlists?</span><span class="lo">ແລກ playlist ກັນບໍ່</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">black hole or wormhole, pick one</span><span class="lo">black hole ຫຼື wormhole ເລືອກມາ</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">series rec pls, i'm bored</span><span class="lo">ມີ series ດີໆແນະນຳບໍ່ ເບື່ອແລ້ວ</span></a>
+      <a class="starter" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener"><span class="en">is AI gonna outsmart us fr?</span><span class="lo">AI ຈະສະຫຼາດກວ່າຄົນແທ້ບໍ່?</span></a>
+    </div>
+    <div class="links">
+      <a class="lnk" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg></span>
+        <span class="tt"><b><span class="en">slide into my DMs</span><span class="lo">ທັກ DM ມາເລີຍ</span></b><span>@siiwa_ghf166</span></span><span class="go" aria-hidden="true">↗</span>
+      </a>
+      <a class="lnk" href="https://www.tiktok.com/@sen.6662" target="_blank" rel="noopener">
+        <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.4 2.6 2.2 4.4 5 4.6"/></svg></span>
+        <span class="tt"><b>TikTok</b><span>@sen.6662</span></span><span class="go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="work" aria-labelledby="h-work">
+    <span class="k">for work</span>
+    <h3 id="h-work"><span class="en">oh, and i make videos</span><span class="lo">ອີກຢ່າງ… ເຮົາຮັບເຮັດວິດີໂອນຳເດີ້</span></h3>
+    <p><span class="en">editing, motion graphics, 3D. need a clip that actually slaps? let's talk. (fitness training too, no joke 💪)</span><span class="lo">video editing, motion graphic, 3D ຮັບໝົດ. ຢາກໄດ້ clip ຄັກໆໃຫ້ brand? ທັກມາລົມກັນເລີຍ. (ຮັບ train fitness ນຳ ບໍ່ໄດ້ເວົ້າຫຼິ້ນ 💪)</span></p>
+    <div class="btns">
+      <a class="btn btn-fill" href="https://ig.me/m/siiwa_ghf166" target="_blank" rel="noopener">IG DM</a>
+      <a class="btn btn-line" href="#" data-link="wa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8z"/></svg>WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span class="sig">Xiva</span>
+    <span><span class="en">made at 2am, powered by americano</span><span class="lo">ເຮັດຕອນສອງໂມງກາງຄືນ ກັບ americano ໜຶ່ງຈອກ</span></span>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(() => {
+  /* WhatsApp: ใส่ลิงก์ เช่น https://wa.me/856xxxxxxxxxx */
+  const LINKS = { wa: "https://wa.me/8562052521398" };
+
+  const root = document.documentElement;
+  const $ = (s) => document.querySelector(s);
+  const reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const isLo = () => root.getAttribute("data-lang") !== "en";
+
+  /* language: Lao first, English as the extra */
+  const langBtns = document.querySelectorAll(".lang button");
+  function setLang(l, save) {
+    const lang = l === "en" ? "en" : "lo";
+    if (lang === "en") root.setAttribute("data-lang", "en"); else root.removeAttribute("data-lang");
+    root.lang = lang;
+    langBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.set === lang)));
+    if (save) { try { localStorage.setItem("xiva-lang2", lang); } catch (e) {} }
+  }
+  langBtns.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.set, true)));
+  let saved = "lo";
+  try { saved = localStorage.getItem("xiva-lang2") || "lo"; } catch (e) {}
+  setLang(saved, false);
+
+  /* toast */
+  const toast = $("#toast"); let toastTimer;
+  function showToast(en, lo) {
+    clearTimeout(toastTimer);
+    toast.textContent = isLo() ? lo : en; toast.hidden = false;
+    requestAnimationFrame(() => toast.classList.add("on"));
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("on");
+      toastTimer = setTimeout(() => { toast.hidden = true; }, 250);
+    }, 2400);
+  }
+
+  /* conversation starters: copy the line, then the link opens IG DM */
+  document.querySelectorAll(".starter").forEach((a) => {
+    a.addEventListener("click", () => {
+      const span = a.querySelector(isLo() ? ".lo" : ".en");
+      const text = span ? span.textContent : a.textContent;
+      try {
+        navigator.clipboard.writeText(text).then(
+          () => showToast("copied, now paste it in my DMs", "copy ໃຫ້ແລ້ວ ໄປ paste ໃນ DM ເລີຍ"),
+          () => {}
+        );
+      } catch (e) {}
+    });
+  });
+
+  /* links not set yet */
+  document.querySelectorAll("[data-link]").forEach((a) => {
+    const url = LINKS[a.dataset.link];
+    if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; }
+    else a.addEventListener("click", (e) => { e.preventDefault(); showToast("WhatsApp coming soon, hang tight", "WhatsApp coming soon ລໍຖ້າແປັບໜຶ່ງເດີ້"); });
+  });
+
+  /* starfield */
+  const c = $("#sky"); const ctx = c.getContext && c.getContext("2d");
+  if (!ctx) return;
+  const ice = getComputedStyle(root).getPropertyValue("--ice").trim() || "#BEC8FF";
+  const warm = getComputedStyle(root).getPropertyValue("--warm").trim() || "#F2D7A2";
+  let W = 0, H = 0, stars = [], shoot = null, nextShoot = 0;
+  function build() {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = window.innerWidth; H = window.innerHeight;
+    c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round((W * H) / 4200);
+    stars = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() < 0.08 ? 1.3 + Math.random() * 0.6 : 0.3 + Math.random() * 0.8,
+      p: Math.random() * Math.PI * 2, s: 0.4 + Math.random() * 1.3,
+      warm: Math.random() < 0.12
+    }));
+  }
+  function draw(now) {
+    const t = now / 1000;
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      const a = reduce ? 0.6 : 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(s.p + t * s.s));
+      ctx.globalAlpha = a * 0.85;
+      ctx.fillStyle = s.warm ? warm : ice;
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.2832); ctx.fill();
+    }
+    if (!reduce) {
+      if (!shoot && t > nextShoot) {
+        shoot = { x: W * (0.2 + Math.random() * 0.7), y: H * Math.random() * 0.35, t0: t };
+        nextShoot = t + 7 + Math.random() * 8;
+      }
+      if (shoot) {
+        const k = (t - shoot.t0) / 0.9;
+        if (k >= 1) shoot = null;
+        else {
+          const len = 120, dx = -0.8, dy = 0.45;
+          const hx = shoot.x + dx * 260 * k, hy = shoot.y + dy * 260 * k;
+          const g = ctx.createLinearGradient(hx, hy, hx - dx * len, hy - dy * len);
+          g.addColorStop(0, ice); g.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.globalAlpha = Math.sin(k * Math.PI);
+          ctx.strokeStyle = g; ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx - dx * len, hy - dy * len); ctx.stroke();
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+  }
+  build();
+  let lastW = W;
+  window.addEventListener("resize", () => { if (window.innerWidth !== lastW) { lastW = window.innerWidth; build(); if (reduce) draw(0); } });
+  nextShoot = 3;
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
